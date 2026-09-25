@@ -1,4 +1,3 @@
-```python
 import json
 import os
 import smtplib
@@ -12,9 +11,7 @@ def send_email(
     subject: str,
     body: str
 ):
-    # ---------------------------------------------------------
-    # Production: Use Resend API when RESEND_API_KEY is set
-    # ---------------------------------------------------------
+    # Production: use Resend API when RESEND_API_KEY is available
     resend_api_key = os.getenv("RESEND_API_KEY")
     resend_from_email = os.getenv("RESEND_FROM_EMAIL")
 
@@ -65,9 +62,7 @@ def send_email(
                 f"Unable to connect to Resend: {exc.reason}"
             ) from exc
 
-    # ---------------------------------------------------------
-    # Local development: Use existing SMTP configuration
-    # ---------------------------------------------------------
+    # Local development: use existing SMTP configuration
     smtp_host = os.getenv("SMTP_HOST")
     smtp_port = int(os.getenv("SMTP_PORT", "587"))
     smtp_username = os.getenv("SMTP_USERNAME")
@@ -168,4 +163,3 @@ Event Ticketing Platform
         subject,
         body
     )
-```
